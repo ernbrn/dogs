@@ -11,6 +11,11 @@ before_action :find_dog, only: [:show, :update, :destroy]
     respond_with @dog
   end
 
+  def update
+    @dog.update(dog_params)
+    respond_with @dog
+  end
+
 
   def create
     @dog = Dog.new(dog_params)

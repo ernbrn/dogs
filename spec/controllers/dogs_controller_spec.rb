@@ -36,11 +36,22 @@ describe DogsController do
     end
   end
 
-  # it 'PATCH :update' do
-  #   dog = create(:dog)
-  #   patch :update, id: dog.id, cat: {name: 'Henry'}, format: :json
-  #
-  # end
+  describe "PATCH :update" do
+    before {@dog = create(:dog)}
+    it 'succeeds when data is changed' do
+      patch :update, id: @dog.id, dog:{name: 'Henry'}, format: :json
+      expect(response).to have_http_status(:no_content)
+      expect(Dog.find(@dog.id).name).to eq 'Henry'
+    end
+
+    it 'fails when a required field is missing' do
+      dog_name = @dog.name
+      patch :update, id: @dog.id, dog:{name: nil}, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(Dog.find(@dog.id).name).to eq dog_name
+    end
+  end
+
   it 'DELETE :destroy' do
     dog = create(:dog)
     delete :destroy, id: dog.id, format: :json
