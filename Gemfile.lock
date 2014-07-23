@@ -63,6 +63,9 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    dragonfly (1.0.5)
+      multi_json (~> 1.0)
+      rack
     erubis (2.7.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -165,6 +168,8 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    shoulda-matchers (2.6.2)
+      activesupport (>= 3.0.0)
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -213,6 +218,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
+  dragonfly
   factory_girl_rails
   guard-rspec
   jbuilder (~> 2.0)
@@ -222,6 +228,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   simple_form
   simplecov
   spring

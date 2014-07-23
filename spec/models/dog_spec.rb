@@ -10,10 +10,16 @@
 #  summary    :string(255)
 #  created_at :datetime
 #  updated_at :datetime
+#  bio        :text
 #
 
 require 'rails_helper'
 
 describe Dog do
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:bio) }
+  it { is_expected.to validate_presence_of(:breed) }
+  it { is_expected.to validate_presence_of(:summary) }
+
 
 end

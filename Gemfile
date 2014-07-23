@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'byebug'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
+gem 'dragonfly'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
@@ -22,6 +23,7 @@ end
 
 group :development, :test do
   gem 'guard-rspec', require: false
+  gem 'shoulda-matchers'
 end
 
 group :test do
