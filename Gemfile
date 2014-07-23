@@ -15,8 +15,12 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 
-group :development, :test do
+group :development do
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'annotate'
+end
+
+group :development, :test do
   gem 'guard-rspec', require: false
 end
 
