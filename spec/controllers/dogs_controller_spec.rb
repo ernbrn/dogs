@@ -11,16 +11,22 @@ describe DogsController do
     expect(data.first["name"]).to eq dogs.first.name
   end
 
-  it 'GET :show' do
-    dog = create(:dog)
-    get :show, id: dog.id, format: :json
-    data = JSON.parse(response.body)
-    expect(data).to have_key('name')
-    expect(data["name"]).to eq dog.name
+  describe "GET :show" do
+    it 'can show a valid dog' do
+      dog = create(:dog)
+      get :show, id: dog.id, format: :json
+      data = JSON.parse(response.body)
+      expect(data).to have_key('name')
+      expect(data["name"]).to eq dog.name
+    end
+
+    it 'cannot show a dog that does not exist' do
+      expect{Dog.find(1)}.to raise_error ActiveRecord::RecordNotFound
+    end
   end
 
   describe 'POST :create' do
-    before { @dog_attributes = attributes_for(:dog)}
+    before { @dog_attributes = attributes_for(:dog) }
     it 'succeeds when all attributes are set' do
       post :create, dog: @dog_attributes, format: :json
       expect(response).to have_http_status(:created)
@@ -52,11 +58,18 @@ describe DogsController do
     end
   end
 
-  it 'DELETE :destroy' do
-    dog = create(:dog)
-    delete :destroy, id: dog.id, format: :json
-    expect(response).to have_http_status(:no_content)
-    expect{Dog.find(dog.id)}.to raise_error ActiveRecord::RecordNotFound
+  describe 'DELETE :destroy' do
+    it 'can delete an exisiting record' do
+      dog = create(:dog)
+      delete :destroy, id: dog.id, format: :json
+      expect(response).to have_http_status(:no_content)
+      expect{Dog.find(dog.id)}.to raise_error ActiveRecord::RecordNotFound
+    end
 
+    it 'cannot delete a nonexistent record' do
+      expect{Dog.destroy(1)}.to raise_error ActiveRecord::RecordNotFound
+    end
   end
 end
+
+# TODO for hw: find cases where api tests fail and fix, refactor
