@@ -34,7 +34,8 @@ before_action :find_dog, only: [:show, :update, :destroy]
     @dog = Dog.find(params[:id])
   end
 
+
   def dog_params
-    params.require(:dog).permit :breed, :name, :birthdate, :bio, :summary
+    params.require(:dog).permit :breed, :name, :birthdate, :bio, :summary, :image_uid
   end
 end

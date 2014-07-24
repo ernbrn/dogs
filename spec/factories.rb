@@ -4,5 +4,6 @@ FactoryGirl.define do
     breed "Breed"
     summary "Summary"
     bio "Bio"
+    image "image"
   end
 end
